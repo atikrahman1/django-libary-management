@@ -1,0 +1,65 @@
+<style>
+
+*{
+  margin:0;
+  padding:0;
+}
+.soft-pagination{
+text-align:center;
+background: #12c2e9;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+margin-top:50px;width:100%;
+-webkit-box-shadow: 1px 7px 14px 0px rgba(189,178,189,1);
+-moz-box-shadow: 1px 7px 14px 0px rgba(189,178,189,1);
+box-shadow: 1px 7px 14px 0px rgba(189,178,189,1);
+}
+.soft-pagination-items{
+color: #ffffff;
+cursor: pointer;
+}
+.soft-pagination-items li{
+display: inline-block;
+padding: 15px 25px;font-weight: 800;
+clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+.soft-pagination-items li.active{
+background: #77f2de; color:#000;
+}
+h2 a{
+  color:hotpink;
+  text-align:center;
+  text-decoration:none;
+}
+.soft-pagination-items li:hover{
+background: linear-gradient(120deg, rgba(87,23,171,1) 100%, rgba(246,0,255,1) 10%);
+color:#f288cb;
+}
+
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"> <!--This cdns used for next pre icons.-->
+<div class="soft-pagination">
+    <ul class="soft-pagination-items">
+
+        {% if books.has_previous %}
+            <a href="/?page={{books.previous_page_number}}"><li><i class="fa fa-chevron-circle-left" style="font-size:20px;color:white"></i></li></a>
+        {% else %}
+             <a href="#"><li><i class="fa fa-chevron-circle-left" style="font-size:20px;color:white"></i></li></a>
+        {% endif %}
+
+        {% for num in books.paginator.page_range %}
+            {% if books.number == num %}
+               <a href="/?page={{num}}"><li class="active">{{num}}</li></a>
+        {% else %}
+                <a href="/?page={{num}}"><li class="">{{num}}</li></a>
+            {% endif %}
+        {% endfor %}
+
+        {% if books.has_next %}
+            <a href="/?page={{books.next_page_number}}"><li><i class="fa fa-chevron-circle-right" style="font-size:20px;color:white"></i></li></a>
+        {% else %}
+             <a href="#"><li><i class="fa fa-chevron-circle-right" style="font-size:20px;color:white"></i></li></a>
+        {% endif %}
+    </ul>
+</div>

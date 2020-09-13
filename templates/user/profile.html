@@ -1,0 +1,305 @@
+{% include 'dashboard/styles.html'%}
+{% include 'dashboard/header.html' %}
+<script>
+    function edit(element) {
+    var parent = $(element).parent().parent();
+    var placeholder = $(parent).find('.text-info').text();
+    //hide label
+    $(parent).find('label').hide();
+    //show input, set placeholder
+    var input = $(parent).find('input[type="text"]');
+    var edit = $(parent).find('.controls-edit');
+    var update = $(parent).find('.controls-update');
+    $(input).show();
+    $(edit).hide();
+    $(update).show();
+    //$(input).attr('placeholder', placeholder);
+}
+
+function update(element) {
+    var parent = $(element).parent().parent();
+    var placeholder = $(parent).find('.text-info').text();
+    //hide label
+    $(parent).find('label').show();
+    //show input, set placeholder
+    var input = $(parent).find('input[type="text"]');
+    var edit = $(parent).find('.controls-edit');
+    var update = $(parent).find('.controls-update');
+    $(input).hide();
+    $(edit).show();
+    $(update).hide();
+    //$(input).attr('placeholder', placeholder);
+    $(parent).find('label').text($(input).val());
+}
+
+
+
+
+
+
+
+</script>
+<style>
+    body{
+    background: #ce93d8;
+}
+.emp-profile{
+    padding-top: 1%;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: 0%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    color: #333;
+}
+.profile-head h6{
+    color: #0062cc;
+}
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+.profile-work{
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p{
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    font-weight: 600;
+    color: #0062cc;
+}
+
+
+
+
+
+
+
+</style>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class=" emp-profile">
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img alt=""
+                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"/>
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input name="file" type="file"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        {{user}}
+                    </h5>
+                    <h6>
+                        Web Developer and Designer
+                    </h6>
+                    <p class="proile-rating">Total Books Borrowed : <span>{{books_user.count}}</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a aria-controls="home" aria-selected="true" class="nav-link active" data-toggle="tab"
+                               href="#home"
+                               id="home-tab" role="tab">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a aria-controls="profile" aria-selected="false" class="nav-link" data-toggle="tab"
+                               href="#profile"
+                               id="profile-tab" role="tab">Book Borrow List</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input aria-controls="collapseExample" aria-expanded="false" class="profile-edit-btn"
+                       data-target="#collapseExample" data-toggle="collapse" name="btnAddMore" type="button"
+                       value="Edit Profile"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <p>WORK LINK</p>
+                    <a href="">Website Link</a><br/>
+                    <a href="">Bootsnipp Profile</a><br/>
+                    <a href="">Bootply Profile</a>
+                    <p>SKILLS</p>
+                    <a href="">Web Designer</a><br/>
+                    <a href="">Web Developer</a><br/>
+                    <a href="">WordPress</a><br/>
+                    <a href="">WooCommerce</a><br/>
+                    <a href="">PHP, .Net</a><br/>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
+                        <!--                        <div class="collapse1" id="collapseExample1">-->
+                        <form role="form">
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" value="{{user.first_name}}"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" value="{{user.last_name}}"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="email" value="{{user.email}}"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" value="{{user.username}}"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="password" value="11111122333"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="password" value="11111122333"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-9 ml-auto text-right">
+                                    <input class="btn btn-outline-secondary" type="reset" value="Cancel"/>
+                                    <input class="btn btn-primary" type="button" value="Save Changes"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
+                        <table class="table table-striped col-md-9 text-center">
+                            <thead>
+                            <tr>
+                            <th>Id</th>
+                            <th></th>
+                            <th>Book name</th>
+                            <th>Author</th>
+                            <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for book in books_user %}
+                            <tr>
+                                <td class="align-middle">{{ forloop.counter }}</td>
+                                <td class="align-middle"><img src="{{ book.cover.url }}" class="img-fluid img-thumbnail" width="135px" height="125px"></td>
+                                <td class="align-middle">{{book.name}}</td>
+                                <td class="align-middle">{{book.author}}</td>
+                                <td class="align-middle"><input type="submit" class="btn btn-danger" onclick="del(this)" id="{{ book.id }}" value="Remove"></td>
+                            </tr>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        {{ forloop.counter }}. {{book.name}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+
+    function del(element) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+          alert(this.responseText)
+        }
+      };
+      xhttp.open("GET", "http://127.0.0.1:8000/user/book?action=remove&b_id="+element.id+"", true);
+      xhttp.send();
+    }
+
+</script>
+{% include 'dashboard/footer.html'%}

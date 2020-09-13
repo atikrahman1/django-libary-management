@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+      {% if results %}
+
+         {% for result in results %}
+         {% include 'dashboard/book_view.html' with value=result %}
+         {% endfor %}
+      {% else %}
+         {% for book in books %}
+         {% include 'dashboard/book_view.html' with value=book %}
+         {% endfor %}
+      {% endif %}
+   </div>
+</div>
+{% endblock content %}

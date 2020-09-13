@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+<a href="#" class="buttons" onclick="del(this)" value="10">click</a>
+<a href="#"  class="buttons"onclick="del(this)" value="11">click--1</a>
+<input type="submit" onclick="del(this)" id="10" value="Remove">
+<input type="submit" onclick="del(this)" id="12" value="Remove">
+</body>
+<!--<script>-->
+<!--    book_id =  document.querySelector("#myId");-->
+<!--    book_id.onclick = function(e) {-->
+<!--     e.preventDefault();-->
+
+<!--      var xhttp = new XMLHttpRequest();-->
+<!--      xhttp.onreadystatechange = function() {-->
+<!--        if (this.readyState == 4 && this.status == 200) {-->
+
+<!--          alert(this.responseText)-->
+<!--        }-->
+<!--      };-->
+<!--      xhttp.open("GET", "http://127.0.0.1:8000/user/book?action=remove&b_id="+book_id.getAttribute('value')+"", true);-->
+<!--      xhttp.send();-->
+<!--}-->
+
+<!--</script>-->
+<script>
+  function del(element) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+          alert(this.responseText)
+        }
+      };
+      xhttp.open("GET", "http://127.0.0.1:8000/user/book?action=remove&b_id="+this.id+"", true);
+      xhttp.send();
+    }
+</script>
+</html>
