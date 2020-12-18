@@ -1,6 +1,8 @@
 "# django-libary-management" 
 
-[![Watch the video](https://prnt.sc/w5itqi)](https://drive.google.com/file/d/1ZkAKSGBLCZqs4rfRXcJAnOeZ6dqEQZ4P/view?usp=sharing)
+Demo video
+
+https://drive.google.com/file/d/1ZkAKSGBLCZqs4rfRXcJAnOeZ6dqEQZ4P/view?usp=sharing
 
 ![github-small](https://i.ibb.co/cCkgL0B/vlcsnap-2020-09-13-10h58m47s622.png)
 
